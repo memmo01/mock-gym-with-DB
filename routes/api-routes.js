@@ -4,6 +4,12 @@ var Sequelize = require("sequelize");
 
 module.exports=function(app){
 
+     app.post("/api/updateSignup",function(req,res){
+        db.signups.create(req.body).then(function(results){
+            res.json(results)
+        })
+    })
+
     app.get("/api/daterange/:beginDate?/:endDate?",function(req,res){
         db.Schedule.findAll({
             where:{
@@ -27,5 +33,20 @@ module.exports=function(app){
             res.json(results)
         })
     })
+    app.get("/api/findUser/:first?/:last?/:email?", function(req,res){
+        db.member.findAll({
+            where:{
+                firstName:req.params.first,
+                lastName:req.params.last,
+                email:req.params.email
+            }
+        }).then(function(results){
+            res.json(results)
+        })
+
+    })
+
+   
+    
 
 }

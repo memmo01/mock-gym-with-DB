@@ -384,6 +384,7 @@ function checkSchedule() {
 console.log(id+dateId+time_start+event)
             //this will add an event and time of event if one exists for this specific day in the database
             var TimE = time_start.split(":").join("")
+            var endTime= time_end.split(":").join("")
           
             var display = $("<div>");
             display.addClass("eventDetails")
@@ -400,12 +401,13 @@ console.log(id+dateId+time_start+event)
             editBtn.addClass("editBtn");
             editBtn.attr("id", dateId + TimE)
             editBtn.attr("data-time", TimE)
+            editBtn.attr("data-endTime", endTime)
             editBtn.attr("data-dateId", dateId)
             editBtn.attr("data-id", id)
             editBtn.attr("data-toggle", 'modal')
             editBtn.attr("data-target", "#exampleModalLong")
             editBtn.css("display", "none")
-            editBtn.text("sign up")
+            editBtn.text("sign up for class")
 
             $(display).append(editBtn);
 
@@ -438,13 +440,15 @@ console.log(id+dateId+time_start+event)
         $(".editBtn").on("click", function(e) {
             e.preventDefault()
             let editTime = ($(this).data("time"))
+            let endTime =($(this).data("endtime"))
             let databaseId = ($(this).data("id"))
+            let selected = ($(this).data("dateid"))
 
 
             $.get("/api/getSingleEvent/" + databaseId, function(results) {
 
                 var Events = results[0].workout
-                populateEditToModal(editTime, Events, databaseId)
+                populateEditToModal(editTime, endTime, Events, databaseId,selected)
             })
 
 
@@ -457,46 +461,29 @@ console.log(id+dateId+time_start+event)
 
 
 //the information is passed into this funtion to populate to the modal for reviewing and editing
-function populateEditToModal(Time, workout, databaseId) {
-    var printTime;
-    var timeFormat = Time.split("")
+function populateEditToModal(startTime,endTime, workout, databaseId, selectedDate) {
+    console.log(typeof selectedDate)
 
+    var dateFormated = dateFormat(selectedDate)
 
-    if(timeFormat.length === 5){
-        timeFormat.splice(1,0,":")
-        printTime = timeFormat.join("")
-        alert(printTime)
-    }
-    else{
-        timeFormat.splice(2,0,":")
-        printTime=timeFormat.join("")
-        alert(printTime)
-    }
+    let date = moment(dateFormated).format("MMM DD, YYYY")
+
+    var printStartTime = timeFormat(startTime)
+    var printEndTime = timeFormat(endTime)
         
 
-    var classDetails = "<div class='classDetails'><h1>"+workout+"</h1> <br> <h3>Time: "+ printTime +"</h3>";
-        classDetails+="<br> <h3> Location: <p> 1234 block blvd</p><p>charlotte , NC 28269</p></h3></div>";
-        classDetails+="<div class='form'>  <input placeholder='firstname'><input placeholder='last name' > <input placeholder='email'></div>"
-
-    var form ="<form> <input placeholder='firstname'><input placeholder='last name' > <input placeholder='email'></form>"
-
-
-
-    var submitEdit = $("<button>");
-    submitEdit.addClass("submitEdit")
-    submitEdit.text("submit edit")
+    var classDetails = "<div class='classDetails'><h1>"+workout+"</h1> <br> <h4>"+date+"</h4><h4>"+ printStartTime +"-"+printEndTime+"</h4>";
+        classDetails+="<br> <h4> Location: <address> 1234 block blvd<br>charlotte , NC 28269</address></h4></div>";
+        classDetails+="<hr class='my-4'><div class='signUpForm'> <h4>Sign up for class:</h4><p class='lead'>Enter your information below to sign up for this workout</p>";
+        classDetails+="<br> <div class='col-lg-4 form-group'><input type='text' class='form-control' id='firstName' placeholder='First name'>";
+        classDetails+="<input type='text' class='form-control' id='lastName' placeholder='Last name'>";
+        classDetails+="<input type='email' class='form-control' id='email' placeholder='Email'>";
+        classDetails+="<button type='submit' data-id="+databaseId+" class='btn btn-primary btn-block submitSignUp'>Sign up</button>";
+        classDetails+="<button type='submit' class='btn btn-secondary btn-block createProfile'>Create Profile</button></div></form>";
 
 
-    var deleteEvent = $("<button>");
-    deleteEvent.addClass("deleteEvent")
-    deleteEvent.text("delete event")
 
-    $(".modal-footer").html(submitEdit)
-    // $(".modal-footer").append(deleteEvent)
-   $(".modal-header").html("Sign up");
-
-   
-
+    $(".modal-header").html("The Fitness Center");
     $(".modal-body").html(classDetails);
 
     for (j = 0; j < time.length; j++) {
@@ -507,28 +494,89 @@ function populateEditToModal(Time, workout, databaseId) {
 
 //     //on submit the updated information is passed into the database and is identified based on the database id
 
-    $(".submitEdit").on("click", function(e) {
+    $(".submitSignUp").on("click", function(e) {
         e.preventDefault()
-        var info = {
-            id: databaseId,
-            time: $("#selectedTime").val(),
-            event: $("#event").val()
-        }
 
-        $.ajax({
-            url: "/api/editEvent",
-            method: "PUT",
-            data: info
-        }).then(function() {
-            console.log("added")
-            formCalendar()
+        //check database to see if user is in the system and if it is ge tthe userID
+let workoutId= ($(this).data("id"))
+        
+            let firstname= $("#firstName").val()
+            let lastName=$("#lastName").val()
+            let email= $("#email").val()
+        
+
+        $.get("/api/findUser/"+firstname+"/"+lastName+"/"+email, function(results){
+            console.log(results)
+            if(results.length === 0){
+                alert("no mas, you need to sign up buckaroo")
+            }
+            else if(results.length === 1){
+                let r = results[0].id
+                addToFitnessClass(r, workoutId)
+            }
         })
-        $("#exampleModalLong").modal('toggle');
+        // var info = {
+        //     id: databaseId,
+        //     time: $("#selectedTime").val(),
+        //     event: $("#event").val()
+        // }
+        alert("worked")
+
+        // $.ajax({
+        //     url: "/api/editEvent",
+        //     method: "PUT",
+        //     data: info
+        // }).then(function() {
+        //     console.log("added")
+        //     formCalendar()
+        // })
+
+        // $("#exampleModalLong").modal('toggle');
 
     })
+
 }
 
+function addToFitnessClass(results, workoutId){
+    console.log(results +"/"+ workoutId)
+    let info ={
+        scheduleId: workoutId,
+        userID:results
+    }
+    $.post("/api/updateSignup",info,function(){
+        console.log("signup updated")
+    })
 
+
+}
+
+function dateFormat(selectedDate){
+    var timeString=(selectedDate.toString())
+var timeString = timeString.split("")
+timeString.splice(4,0,"-")
+timeString.splice(7,0,"-")
+
+var x = timeString.join("")
+
+return x
+}
+
+function timeFormat(Time){
+    
+    var timeFormat = Time.split("")
+
+
+    if(timeFormat.length === 5){
+        timeFormat.splice(1,0,":")
+        printTime = timeFormat.join("")
+        return printTime
+    }
+    else{
+        timeFormat.splice(2,0,":")
+        printTime=timeFormat.join("")
+        return printTime
+    }
+}
 
 //     //when delete is selected the database is queried for a specific id. when it finds that id it will delete all information
 //     //under that id
