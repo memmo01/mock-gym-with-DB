@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./css/reset.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/calendar.css">
+</head>
+<style>
+
+   
+
+ 
+  
+
+    </style>
+<body>
+   <div class="container-fluid">
+   <nav class="navbar fixed-top navbar-dark bg-dark">
+      <div class="col-lg-3">
+         company logo
+      </div>
+      <div class="col-lg-4 center-nav-text">
+         The Fitness Center
+      </div>
+      <div class-"col-lg-4">
+         <button type="button" class="btn btn-outline-light btn-sm"><a href="#location" style="text-decoration: none">Locations</a></button>
+         <button type="button" class="btn btn-outline-light btn-sm" data-toggle="modal" data-target="#exampleModalCenter" onclick="runModal('member')">Membership</button>
+         <button type="button" class="btn btn-outline-light btn-sm"data-toggle="modal" data-target="#exampleModalCenter" onclick="runModal('schedule')">Schedule</button>
+         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModalCenter" onclick="runModal('signup')">Sign up</button>
+      </div>
+      <div class="col-lg-12 links">
+      </div>
+   </nav>
+   <nav class="navbar fixed-bottom navbar-dark bg-dark">
+      <!-- <div class="col-lg-12 mx-auto"> -->
+      <div class="mx-auto" width="200px">
+         <i class="fab fa-facebook-square fa-2x social-icon"></i>
+         <i class="fab fa-instagram fa-2x social-icon"></i>
+         <i class="fab fa-youtube fa-2x social-icon"></i>
+         <i class="fab fa-twitter fa-2x social-icon"></i>
+      </div>
+      <!-- </div> -->
+   </nav>
+   <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+         <div class="carousel-item active" id="slide1">
+            <img class="d-block w-100" src="#" alt="">
+         </div>
+         <div class="carousel-item" id="slide2">
+            <img class="d-block w-100" src="#" alt="">
+         </div>
+         <div class="carousel-item" id="slide3">
+            <img class="d-block w-100" src="#" alt="">
+         </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+      </a>
+   </div>
+    
+   <div class="col-lg-12">
+   <div class="row about">
+      <div class="col-md-2">
+      </div>
+      <div class="col-lg-8">
+         <div class="jumbotron">
+            <h1 class="display-4">About Us</h1>
+            <p>
+               is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+            </p>
+         </div>
+      </div>
+      <div class="col-md-2">
+      </div>
+   </div>
+
+
+   <div class="row gym-options">
+      <div class="col">
+      </div>
+      <div class="col-lg-2">
+         <div class="card">
+             <div class="top-card">
+            <i class="fas fa-universal-access fa-6x icon-pic" ></i>
+             </div>
+            <div class="card-body">
+               <h5 class="card-title">Classes</h5>
+               <p class="card-text" id="text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+               <a href="#" class="btn btn-primary btn-sm"  data-toggle="modal" data-target="#exampleModalCenter" onclick="runModal('classes')">Check Classes</a>
+            </div>
+         </div>
+      </div>
+      <div class="col-lg-2">
+         <div class="card" >
+             <div class="top-card">
+            <i class="fas fa-users fa-6x icon-pic"></i>
+             </div>
+            <div class="card-body">
+               <h5 class="card-title">Membership Pricing</h5>
+               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+               <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModalCenter" onclick="runModal('pricing')" >Check Rates</a>
+            </div>
+         </div>
+      </div>
+      <div class="col-lg-2">
+         <div class="card" >
+             <div class="top-card">
+            <i class="far fa-star fa-6x icon-pic"></i>
+             </div>
+            <div class="card-body">
+               <h5 class="card-title">Specials</h5>
+               <p class="card-text" id="text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+               <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModalCenter" onclick="runModal('special')">Check Specials</a>
+            </div>
+         </div>
+      </div>
+      <div class="col-lg-2">
+         <div class="card" >
+             <div class="top-card">
+            <i class="far fa-calendar-alt fa-6x icon-pic"></i>
+             </div>
+            <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+            <div class="card-body">
+                
+               <h5 class="card-title">Schedules</h5>
+               <p class="card-text"id="text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+               <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModalCenter" onclick="runModal('schedule')">Check Schedules</a>
+            </div>
+         </div>
+      </div>
+        <div class="col">
+        </div>
+   </div>
+   <!-- </div>  -->
+   <div class="row about">
+      <div class="col-md-6">
+         <div class="jumbotron ">
+               <h1 class="display-4">Personalized Training</h1>
+               <p class="lead">Customized fitness programs designed to reach personal health and fitness goals in:</p>
+               <ul class="list-group">
+                  <li class="list-group-item">Body Toning</li>
+                  <li class="list-group-item">Weight loss</li>
+                  <li class="list-group-item">Improve Core Strength</li>
+                  <li class="list-group-item">Strengthen Underactive Muscles</li>
+                  <li class="list-group-item">Creating a Healthier Lifestyle</li>
+                  <li class="list-group-item">Improve Balance</li>
+                  <li class="list-group-item">Improve Athletic Percormance</li>
+               </ul>
+            
+         </div>
+         <div class="jumbotron ">
+            <div class="container">
+               <div class="card">
+                  <div class="card-header">
+                     <h3 class="display-4">Video Gallery</h3>
+                  </div>
+                  <div class="card-body">
+                     <div class="col-lg-12"> 
+                        <img src="./images/download.png" alt="..." style="width:45%" class="multimedia" >
+                        <img src="./images/download.png" alt="..." style="width:45%" class="multimedia">
+                        <img src="./images/download.png" alt="..." style="width:45%" class="multimedia">
+                        <img src="./images/download.png" alt="..." style="width:45%" class="multimedia">
+                        <span id="hidden-videos">
+                            
+                        <img src="./images/download.png" alt="..." style="width:45%" class="multimedia">
+                        <img src="./images/download.png" alt="..." style="width:45%" class="multimedia">
+                        </span>
+                     </div>
+                     <div class="arrow-vid"><i class="fas fa-arrow-circle-down fa-2x arrow" ></i></div>
+                  </div>
+               </div>
+               <div class="card">
+                  <div class="card-header">
+                     <h3 class="display-4">Photo Gallery</h3>
+                  </div>
+                  <div class="card-body">
+                     <div class="col-lg-12 hoho">             
+                        <img class="rounded multimedia" src="./images/download.png" alt="..." style="width:4.5rem" >
+                        <img class="rounded multimedia" src="./images/download.png" alt="..." style="width:4.5rem" >
+                        <img class="rounded multimedia" src="./images/download.png" alt="..." style="width:4.5rem" >
+                        <img class="rounded multimedia" src="./images/download.png" alt="..." style="width:4.5rem" >
+                        <img class="rounded multimedia" src="./images/download.png" alt="..." style="width:4.5rem" >
+                        <img class="rounded multimedia" src="./images/download.png" alt="..." style="width:4.5rem" >
+                        <span id="hidden-pictures">
+                        <img class="rounded multimedia" src="./images/download.png" alt="..." style="width:4.5rem" >
+                        <img class="rounded multimedia" src="./images/download.png" alt="..." style="width:4.5rem" >
+                        <img class="rounded multimedia" src="./images/download.png" alt="..." style="width:4.5rem" >
+                        <img class="rounded multimedia" src="./images/download.png" alt="..." style="width:4.5rem" >
+                        <img class="rounded multimedia" src="./images/download.png" alt="..." style="width:4.5rem" >
+                        <img class="rounded multimedia" src="./images/download.png" alt="..." style="width:4.5rem" >
+                        <img class="rounded multimedia" src="./images/download.png" alt="..." style="width:4.5rem" >
+                        <img class="rounded multimedia" src="./images/download.png" alt="..." style="width:4.5rem" >
+                        <img class="rounded multimedia" src="./images/download.png" alt="..." style="width:4.5rem" >
+                        <img class="rounded multimedia" src="./images/download.png" alt="..." style="width:4.5rem" >
+                        <img class="rounded multimedia" src="./images/download.png" alt="..." style="width:4.5rem" >
+                        </span>
+                     </div>
+                     <div class="arrow-pic"><i class="fas fa-arrow-circle-down fa-2x arrow"></i></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+        
+      <div class="col-md-6">
+         <div class="jumbotron">
+            <div class="container">
+               <h1 class="display-4">Meet the Staff</h1>
+               <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+               <div class="card">
+                  <div class="card-header">
+                     Lead Trainer
+                  </div>
+                  <div class="card-body">
+                     <h5 class="card-title">Bob Fitness</h5>
+                     <img class="rounded-circle" src="./images/lead-trainer.jpg" style="width:5rem;" alt="Card image cap">
+                     <p class="card-text">earch for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).With supporting text below as a natural lead-in to additional content.</p>
+                  </div>
+               </div>
+               <div class="card">
+                  <div class="card-header">
+                     Personal Trainer
+                  </div>
+                  <div class="card-body">
+                     <h5 class="card-title">Michelle Fitness</h5>
+                     <img class="rounded-circle" src="./images/personal-trainer2.jpg" style="width:5rem;" alt="Card image cap">
+                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                  </div>
+               </div>
+               <div class="card">
+                  <div class="card-header">
+                     Personal Trainer
+                  </div>
+                  <div class="card-body">
+                     <h5 class="card-title">Jerry Fitness</h5>
+                     <img class="rounded-circle" src="./images/personal-trainer3.jpg" style="width:5rem;" alt="Card image cap">
+                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="jumbotron">
+            <h1 class="display-4">News and Upcoming Events</h1>
+            <ul class="list-group">
+               <li class="list-group-item list-group-item-action">Cras justo odio</li>
+               <li class="list-group-item list-group-item-action ">Dapibus ac facilisis in</li>
+               <li class="list-group-item list-group-item-action">Morbi leo risus</li>
+               <li class="list-group-item list-group-item-action">Porta ac consectetur ac</li>
+               <li class="list-group-item list-group-item-action">Vestibulum at eros</li>
+            </ul>
+         </div>
+      </div>
+   </div>
+   <div class="row location">
+      <div class="container-fluid">
+         <div class="row">
+            <div class="col">
+            </div>
+            <div class="jumbotron col-lg-8 col-md-8 col-sm-12 col-xs-12 jumboLoc" id="location">
+               <h1 class="display-4">Location</h1>
+               <div class="row">
+                  <div class="col">
+                  </div>
+                  <div class="col-lg-6 col-md-12 col-sm-12 map">
+                     <div id="map">
+                        <iframe
+                           width="100%"
+                           height="450"
+                           frameborder="0" style="border:0"
+                           src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDkqz3aZuPKwjTOJH0BiHPBlUiTanjQiYk&q=Charlotte+NC" allowfullscreen>
+                        </iframe>
+                     </div>
+                  </div>
+                  <div class="col-lg-4 col-md-12 col-sm-12 col-xs-6 business-loc-info">
+                     COMPANY LOGO<br><br>
+                      <img class="rounded" src="./images/store.JPG" id="store-image" style="width:100%; height:30%;" alt="Card image cap">
+                 
+                     <b>The Fitness center</b><br>
+                     555 Fitness ln<br>
+                     Fitness, NC 28888<br>
+                     United States<br>
+                     704-555-5555<br>
+
+                     </div>
+                  <div class="col"></div>
+               </div>
+            </div>
+            <div class="col">
+            </div>
+         </div>
+      </div>
+   </div>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+<script type="text/javascript" src="./js/calendar.js">
+</script>
+
+<script type="text/javascript">
+ $(".monthContainer").on("click",function(){
+        alert("hi")
+    })
+</script>
+
+
+   
+
+           
+    
+     
+
+</body></html>

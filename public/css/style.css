@@ -1,0 +1,161 @@
+body,html{
+     background-color:grey;
+}
+.navbar{
+    color: white;
+
+    
+}
+.main{
+    height:500px;
+    background-color: grey; 
+    width:100%;
+}
+.about{
+    background-color: #B0D9D4;
+    padding-bottom:20px;
+}
+.gym-options{
+    background-color: lightgray;
+    display: inline-flex;
+    padding:60px 0 40px 0;
+   
+}
+.location{
+    background-color: lightgray;
+   
+   
+
+}
+.carousel{
+    width:100%;
+}
+#slide1{
+    background-image: url("../images/workoutpic1.JPG");
+     background-size: cover;
+       background-repeat: no-repeat;
+    height:600px;
+}
+#slide2{
+    background-image: url("../images/gympic2.JPG");
+     background-size: cover;
+       background-repeat: no-repeat;
+    height:600px;
+}
+#slide3{
+    background-image: url("../images/gympic3.JPG");
+     background-size: cover;
+       background-repeat: no-repeat;
+    height:600px;
+}
+
+.center-nav-text{
+    text-align: center;
+}
+.rounded-circle{
+    float:left;
+    margin-right:10px;
+   
+}
+    #map {
+        margin-top:20px;
+        
+       } 
+   
+    .local-map-info{
+        display:inline-flex;
+      
+    }
+    .business-loc-info{
+        margin-top:20px;
+        padding-top:40px;
+        background-color: lightblue;
+        height:450px;
+         text-align: center; 
+    }
+    .icon-pic{      
+        padding-top:20px;
+         
+        
+    }
+    a{
+        color:white
+    }
+     a:hover{
+         color:black;
+     }
+    #text{
+        padding-top:24px;
+    }
+    
+    .card-header{
+        background-color: lightblue;
+    }
+     
+    .card-body{
+        text-align: center;
+    }
+    .multimedia{
+        margin-top:5px;
+    }
+      .multimedia:hover{
+        border:2px solid black;
+    }
+   
+
+  .arrow{
+    margin-top:10px;
+      opacity: .3;
+  }
+     .arrow:hover{
+      opacity: .7;
+  }
+    .list-group{
+        margin-top:50px;
+    }
+    .top-card{
+        display:inline-block;
+        text-align: center;
+    }
+    #hidden-pictures{
+        display: none;
+    }
+     #hidden-videos{
+        display: none;
+    }
+    #store-image{
+        margin-top:10px;
+        margin-bottom:50px;
+    }
+    
+
+    @media only screen and (max-width: 600px){
+        #slide1{
+            margin-top:80px;
+    background-image: url("workoutpic1.JPG");
+     background-size: 100% 100%;
+       background-repeat: no-repeat;
+    height:250px;
+}
+#slide2{
+     margin-top:80px;
+    background-image: url("gympic2.JPG");
+     background-size: 100% 100%;
+       background-repeat: no-repeat;
+    height:250px;
+}
+#slide3{
+     margin-top:80px;
+    background-image: url("gympic3.JPG");
+     background-size: 100% 100%;
+       background-repeat: no-repeat;
+    height:250px;
+}
+.carousel-control-next{
+    margin-top:25%;
+}
+.carousel-control-prev{
+    margin-top:25%;
+}
+
+    }
