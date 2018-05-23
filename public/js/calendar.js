@@ -18,9 +18,9 @@ function runModal(x){
     else if(x ==="schedule"){
          formCalendar()
     }
-    else if(x === "signup"){
-         $(".modal-header").html("signUP");
-    }
+    // else if(x === "signup"){
+    //      $(".modal-header").html("signUP");
+    // }
     else if(x === "classes"){
         $(".modal-header").html("Classes offered");
     }
@@ -515,27 +515,78 @@ let workoutId= ($(this).data("id"))
                 addToFitnessClass(r, workoutId)
             }
         })
-        // var info = {
-        //     id: databaseId,
-        //     time: $("#selectedTime").val(),
-        //     event: $("#event").val()
-        // }
         alert("worked")
-
-        // $.ajax({
-        //     url: "/api/editEvent",
-        //     method: "PUT",
-        //     data: info
-        // }).then(function() {
-        //     console.log("added")
-        //     formCalendar()
-        // })
-
-        // $("#exampleModalLong").modal('toggle');
 
     })
 
+
+
+
+$(".createProfile").on("click",function(e){
+    e.preventDefault()
+    createProfile()
+
+        })
 }
+
+$(".createProfile").on("click",function(e){
+    e.preventDefault()
+    $(".modal-dialog").css("max-width","1000px")
+    createProfile()
+})
+
+
+
+    // *************************
+    // *******************
+    // *************
+    // CREATE PROFILE SECTION *******
+
+function createProfile(){
+    $(".modal-header").html("The Fitness Center")
+    let form="<h4> Register and Get Started Today!</h4><p class='lead'>Enter in the information below and then head to our calendar to signup for a class!</p>"
+        form += "<div class='col-lg-4 form-group'><input type='text' class='form-control' id='firstName' placeholder='First name'>";
+        form+="<input type='text' class='form-control' id='lastName' placeholder='Last name'>";
+        form+="<input type='text' class='form-control' id='DOB' placeholder='DOB MM-DD-YYYY'>";
+        form+="<input type='text' class='form-control' id='address' placeholder='Address'>";
+        form +="<input type='text' class='form-control' id='city' placeholder='City'>";
+        form +="<input type='text' class='form-control' id='state' placeholder='State'>"
+        form += "<input type='text' class='form-control' id='zip' placeholder='Zip Code'>";
+        form += "<input type='email' class='form-control' id='email' placeholder='Email'>";
+        form+="<button type='submit' class='btn btn-secondary btn-block submitProfile'>Submit Profile</button></div>"
+
+    $(".modal-body").html(form)
+
+    $(".submitProfile").on("click",function(e){
+        e.preventDefault()
+        var member={
+            firstName:$("#firstName").val(),
+            lastName:$("#lastName").val(),
+            DOB:$("#DOB").val(),
+            address:$("#address").val(),
+            city:$("#city").val(),
+            state:$("#state").val(),
+            zip:$("#zip").val(),
+            email:$("#email").val()
+        }
+
+
+        addNewMember(member)
+    })
+
+
+
+}
+
+function addNewMember(member){
+    $.post("/api/addNewMember",member,function(results){
+        console.log(results)
+    })
+
+}
+
+
+
 
 function addToFitnessClass(results, workoutId){
     console.log(results +"/"+ workoutId)
@@ -577,26 +628,3 @@ function timeFormat(Time){
         return printTime
     }
 }
-
-//     //when delete is selected the database is queried for a specific id. when it finds that id it will delete all information
-//     //under that id
-//     $(".deleteEvent").on("click", function(e) {
-//         e.preventDefault()
-//         var info = {
-//             id: databaseId
-//         }
-//         $.ajax({
-//             url: "/api/deleteEvent",
-//             method: "DELETE",
-//             data: info
-//         }).then(function() {
-//             console.log("deleted")
-//             formCalendar()
-//         })
-//         $("#exampleModalLong").modal('toggle');
-//     })
-
-
-
-
-// }
