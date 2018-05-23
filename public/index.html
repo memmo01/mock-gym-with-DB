@@ -40,7 +40,7 @@
       </div>
       <div class-"col-lg-4">
          <button type="button" class="btn btn-outline-light btn-sm"><a href="#location" style="text-decoration: none">Locations</a></button>
-         <button type="button" class="btn btn-outline-light btn-sm" data-toggle="modal" data-target="#exampleModalCenter" onclick="runModal('member')">Membership</button>
+         <button type="button" class="btn btn-outline-light btn-sm" data-toggle="modal" data-target="#exampleModalCenter" onclick="populateMembershipDetails()">Membership</button>
          <button type="button" class="btn btn-outline-light btn-sm"data-toggle="modal" data-target="#exampleModalCenter" onclick="runModal('schedule')">Schedule</button>
          <button type="button" class="btn btn-primary btn-sm createProfile" data-toggle="modal" data-target="#exampleModalCenter">Sign up</button>
       </div>
@@ -107,7 +107,7 @@
             <div class="card-body">
                <h5 class="card-title">Classes</h5>
                <p class="card-text" id="text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-               <a href="#" class="btn btn-primary btn-sm"  data-toggle="modal" data-target="#exampleModalCenter" onclick="runModal('classes')">Check Classes</a>
+               <a href="#" class="btn btn-primary btn-sm"  data-toggle="modal" data-target="#exampleModalCenter" onclick="classesList()">Check Classes</a>
             </div>
          </div>
       </div>
@@ -119,7 +119,7 @@
             <div class="card-body">
                <h5 class="card-title">Membership Pricing</h5>
                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-               <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModalCenter" onclick="runModal('pricing')" >Check Rates</a>
+               <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModalCenter" onclick="populateMembershipDetails()" >Check Rates</a>
             </div>
          </div>
       </div>
@@ -321,7 +321,7 @@
         </button>
       </div>
       <div class="modal-body">
-        ...
+        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -332,6 +332,10 @@
 
 <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 <script type="text/javascript" src="./js/calendar.js">
+</script>
+<script type="text/javascript" src="./js/membership.js">
+</script>
+<script type="text/javascript" src="./js/classes.js">
 </script>
 
 <script type="text/javascript">

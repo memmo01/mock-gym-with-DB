@@ -1,3 +1,4 @@
+
 let currentYear = moment().format("YYYY")
 let currentMonth = moment().format("MM");
 let daysInMonth;
@@ -9,20 +10,12 @@ var time = ["6am", "615am", "630am", "645am", "7am", "715am", "730am", "745am", 
 // formCalendar()
 
 function runModal(x){
+     $(".modal-body").css("display","block")
     $(".modal-header").empty();
     $(".modal-body").empty()
             $(".modal-dialog").css("max-width","500px")
-    if(x ==="member"){
-        $(".modal-header").html("memberSHIP!!")
-    }
-    else if(x ==="schedule"){
+   if(x ==="schedule"){
          formCalendar()
-    }
-    // else if(x === "signup"){
-    //      $(".modal-header").html("signUP");
-    // }
-    else if(x === "classes"){
-        $(".modal-header").html("Classes offered");
     }
     else if(x === "special"){
         $(".modal-header").html("Specials");
@@ -398,7 +391,8 @@ console.log(id+dateId+time_start+event)
             //attributes to reference the specifc day/ event/ and time so we know which event needs to be edited
             //and can populate the information already existing into an edit form to change
             var editBtn = $("<button>");
-            editBtn.addClass("editBtn");
+            editBtn.addClass("btn btn-info editBtn");
+            editBtn.attr("type","button")
             editBtn.attr("id", dateId + TimE)
             editBtn.attr("data-time", TimE)
             editBtn.attr("data-endTime", endTime)
@@ -424,6 +418,7 @@ console.log(id+dateId+time_start+event)
             var w = x + y
             console.log(w)
             $("#" + w + "").css("display", "block")
+            $("#" + w + "").css("color", "white")
         }, function(e) {
             var x = e.target.id
             var y = $(this).data("time");
@@ -478,7 +473,7 @@ function populateEditToModal(startTime,endTime, workout, databaseId, selectedDat
         classDetails+="<br> <div class='col-lg-4 form-group'><input type='text' class='form-control' id='firstName' placeholder='First name'>";
         classDetails+="<input type='text' class='form-control' id='lastName' placeholder='Last name'>";
         classDetails+="<input type='email' class='form-control' id='email' placeholder='Email'>";
-        classDetails+="<button type='submit' data-id="+databaseId+" class='btn btn-primary btn-block submitSignUp'>Sign up</button>";
+        classDetails+="<button type='submit' data-id="+databaseId+" class='btn btn-primary btn-block submitSignUp'>Sign up for Class</button>";
         classDetails+="<button type='submit' class='btn btn-secondary btn-block createProfile'>Create Profile</button></div></form>";
 
 
@@ -498,7 +493,7 @@ function populateEditToModal(startTime,endTime, workout, databaseId, selectedDat
         e.preventDefault()
 
         //check database to see if user is in the system and if it is ge tthe userID
-let workoutId= ($(this).data("id"))
+        let workoutId= ($(this).data("id"))
         
             let firstname= $("#firstName").val()
             let lastName=$("#lastName").val()
@@ -515,25 +510,24 @@ let workoutId= ($(this).data("id"))
                 addToFitnessClass(r, workoutId)
             }
         })
-        alert("worked")
 
     })
 
 
 
 
-$(".createProfile").on("click",function(e){
-    e.preventDefault()
-    createProfile()
+        $(".createProfile").on("click",function(e){
+            e.preventDefault()
+            createProfile()
 
+                })
+        }
+
+        $(".createProfile").on("click",function(e){
+            e.preventDefault()
+            $(".modal-dialog").css("max-width","1000px")
+            createProfile()
         })
-}
-
-$(".createProfile").on("click",function(e){
-    e.preventDefault()
-    $(".modal-dialog").css("max-width","1000px")
-    createProfile()
-})
 
 
 
@@ -555,6 +549,7 @@ function createProfile(){
         form += "<input type='email' class='form-control' id='email' placeholder='Email'>";
         form+="<button type='submit' class='btn btn-secondary btn-block submitProfile'>Submit Profile</button></div>"
 
+        $(".modal-body").css("display","block")
     $(".modal-body").html(form)
 
     $(".submitProfile").on("click",function(e){
@@ -583,13 +578,17 @@ function addNewMember(member){
         console.log(results)
     })
 
+    $(".modal-body").html("Welcome to The Fitness Center community! Now all you have to do is signup for a day and workout that works for you. Our Calendar will load shortly.. ")
+
+    setTimeout(function(){
+        formCalendar()
+    },8000)
 }
 
 
 
 
 function addToFitnessClass(results, workoutId){
-    console.log(results +"/"+ workoutId)
     let info ={
         scheduleId: workoutId,
         userID:results
@@ -597,19 +596,22 @@ function addToFitnessClass(results, workoutId){
     $.post("/api/updateSignup",info,function(){
         console.log("signup updated")
     })
-
-
+    
+        $(".modal-body").html("You have successfully signed up for this class and will receive a verification email shortly! ")
+        
+        setTimeout(function(){formCalendar()},5000)
 }
 
 function dateFormat(selectedDate){
     var timeString=(selectedDate.toString())
-var timeString = timeString.split("")
-timeString.splice(4,0,"-")
-timeString.splice(7,0,"-")
 
-var x = timeString.join("")
+    var timeString = timeString.split("")
+        timeString.splice(4,0,"-")
+        timeString.splice(7,0,"-")
 
-return x
+        var x = timeString.join("")
+
+        return x
 }
 
 function timeFormat(Time){
@@ -628,3 +630,4 @@ function timeFormat(Time){
         return printTime
     }
 }
+
