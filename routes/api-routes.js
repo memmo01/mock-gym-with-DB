@@ -17,7 +17,7 @@ module.exports=function(app){
     })
 
     app.get("/api/daterange/:beginDate?/:endDate?",function(req,res){
-        db.Schedule.findAll({
+        db.schedule.findAll({
             where:{
                 date:{
                     $lte:req.params.endDate,
@@ -26,12 +26,14 @@ module.exports=function(app){
                 
             }
         }).then(function(results){
+            console.log("working on it")
+            console.log(results)
             res.json(results)
         })
     })
 
       app.get("/api/getSingleEvent/:id?",function(req,res){
-        db.Schedule.findAll({
+        db.schedule.findAll({
             where:{
                 id:req.params.id
             }

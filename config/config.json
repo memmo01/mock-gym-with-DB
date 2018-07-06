@@ -1,9 +1,9 @@
 {
   "development": {
     "username": "root",
-    "password": "",
-    "database": "",
-    "host": "127.0.0.1",
+    "password": "PBJtime",
+    "database": "gym",
+    "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
