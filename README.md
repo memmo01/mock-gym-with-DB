@@ -1,5 +1,5 @@
 # mock-gym-site
-a design showing how a fitness site could look
+A design showing how a fitness site could look. It has the ability to link to a separate program where information about workout plans along with days and times programs will be taken place can be updated. Those updates are then reflected on the schedule page of this site. It allows users to sign up for a specific class on specific dates and times.
 
 ## Technologies used:
 - HTML5
