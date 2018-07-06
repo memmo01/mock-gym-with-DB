@@ -1,6 +1,18 @@
 # mock-gym-site
 a design showing how a fitness site could look
 
+## Technologies used:
+- HTML5
+- CSS3
+- Javascript
+- jQuery
+- Express
+- Body-Parser
+- momentjs
+- Bootstrap
+- mySQL
+- Sequelize
+
 ## Landing Page:
 ![](./screenShots/gymTopPage.JPG)
 ## About Staff and Training Options 
